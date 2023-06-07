@@ -1,0 +1,119 @@
+:root{
+    --confirm: rgb(0,212,255);
+    --hover: rgba(9,9,121);
+    --primary-font: 'Open Sans';
+}
+
+.card{
+    width: 33%;
+    border-radius: 6px;
+    background-color: #d8d8d8;
+    padding: 1em;
+    @media (max-width: 425px){
+        width: 70%;
+    }
+}
+
+.card form{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.input-container, .invalid-field, label, button, .errorMsg{
+   font-family: var(--primary-font);
+}
+
+.input-container .form-field, .invalid-field {
+    display: block;
+    width: 100%;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: 3px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+  
+.input-container .form-field:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.input-container > *{
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 0.5em;
+}
+
+.input-container label{
+    font-size: 11px;
+}
+
+.date{
+    text-align: center;
+}
+
+.invalid-field{
+    outline: red 2px solid;
+}
+
+#expYear,#expMonth{
+    width: 33%;
+    display: inline-block;
+    padding: 0 0.25em;
+}
+
+.btnCheck {
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid transparent;
+    padding: 0.25em;
+    line-height: 1.5;
+    border-radius: 3px;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    color: #fff;
+    background-color: var(--confirm);
+    border-color: var(--confirm);
+    grid-area: d;
+}
+
+.btnCheck:hover {
+    color: #fff;
+    background-color: var(--hover);
+    border-color: var(--hover);
+}
+  
+.btnCheck:focus {
+    color: #fff;
+    background-color: var(--hover);
+    border-color: var(--hover);
+    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
+  
+.errorMsg, .successMsg {
+    font-size: 11px;
+    font-weight: 500;
+    width: 100%;
+    color: red;
+    text-align: center;
+}
+.successMsg{
+    color: green;
+    font-size: 12px;
+}
+
+.loader > * {
+    width: 3em;
+    height: 3em;
+}
+
+.loader{
+    display: flex;
+    justify-content: center;
+} 
