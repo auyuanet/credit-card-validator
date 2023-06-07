@@ -11,10 +11,10 @@ An important aspect to mention is that each validation was performed based on th
 1. Download the proyect and save it into a folder.
 2. Open your system's console.
 3. Change directory by doing 'cd [Folder_Name]/CreditCardApp/Backend'
-4. Excecute 'node server'.
+4. Excecute 'npm install', then 'node server'.
 5. Open another console.
 6. Change directory by doing 'cd [Folder_Name]/CreditCardApp/Frontend/credit-card-form'.
-7. Excecute 'node start'.
+7. Excecute 'npm install', then 'npm start'.
 
 Please be aware that routes may not function properly depending on your current directory.
 
@@ -85,7 +85,7 @@ Please be aware that routes may not function properly depending on your current 
  - **validCard**: Returns true if the card is valid (card number, expiration date, and CVV code).
  - **expDat**:  Returns true if the expiration date is valid.
  - **cvvCode**:   Returns true if the  CVV code is valid.
- - **panNumber**:   Returns true if the card number is valid.
+ - **panNumber**:  Returns true if the card number is valid.
 
 
 ## IMPORTANT POINTS
