@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './CreditCardForm.css';
 import loaderGif from './media/loader.gif';
 
+//Setting url base and endpoint
 const URL_VALIDATE_POST = 'http://localhost:8000';
 const ENDPOINT = '/validateCard';
 
@@ -35,6 +36,7 @@ const CreditCardForm = () => {
   const handleSubmit =  async(event) => {
     event.preventDefault();
     
+    //Initiating empty errors when starting
     setErrorMsg({
       status: 'ERROR',
       general: '',
@@ -44,11 +46,10 @@ const CreditCardForm = () => {
       general: ''
     });
     
-    // Accede a los valores de los campos
+    //Take values from inputs
     const panNumber = card.panNumber;
     const cvvCode = card.cvvCode;
     const expDate = `${card.expYear}-${card.expMonth}`;
-    //let message = '';
     let newErrors = {}
 
     const cardData = {
@@ -56,15 +57,12 @@ const CreditCardForm = () => {
       cvvCode,
       expDate
     };
-    console.log(cardData);
     
-    //debugger;
-    //validate empty fields
+    //First validation: empty fields
     if(!panNumber || !cvvCode || !card.expYear || !card.expMonth) {
       newErrors.general = 'Please complete all fields';
     }else {
-      //debugger;
-      //Length validations
+      //Length validations (that are not done from backend yet)
       if(panNumber.length<16) {
         newErrors.panNumber = 'The card number must be between 16 and 19 characters.';
       }
@@ -78,16 +76,17 @@ const CreditCardForm = () => {
         newErrors.expDate = 'Expiration month must be a number between 1 and 12.'; 
       } 
     }
+    //Saving errors in order to show messages
     if(newErrors.panNumber || newErrors.cvvCode || newErrors.expDate || newErrors.general) {
       setErrorMsg((errors) => ({
         ...errors,
         ...newErrors
       }));
     }else {
+      //Loading gif while waiting
       setLoading(true);
 
-      // Simulating an asynchronous request
-  
+      //POST REQUEST
       await fetch(`${URL_VALIDATE_POST}${ENDPOINT}`, {
         method: 'POST',
         headers: {
@@ -97,12 +96,12 @@ const CreditCardForm = () => {
       })
       .then(response => response.json())
       .then(data => {
-        //debugger;
-        console.log(data);
+        //First validation: is it valid?
         if(data.validCard){
           newErrors.general = 'Valid Card!' 
           newErrors.status = 'SUCCESS';
         }else {
+          //In case it is not correct: then show the errors
           newErrors.general = 'Invalid Card!' 
           if (!data.expDate) newErrors.expDate = 'Invalid date';
           if (!data.cvvCode) newErrors.cvvCode = 'Invalid Cvv Code';
@@ -112,6 +111,7 @@ const CreditCardForm = () => {
           ...errors,
           ...newErrors
         }));
+        //Finish loading gif
         setLoading(false);
       })
       .catch(error => {
@@ -121,8 +121,6 @@ const CreditCardForm = () => {
     return;
 
 };
-
-
   return (
     <div className="card">
   <form>
